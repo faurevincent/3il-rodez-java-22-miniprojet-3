@@ -1,4 +1,6 @@
-package model;
+package model.utils;
+
+import model.entity.Mot;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class LectureFichier {
     /**
      * Mots et définitions des mots du fichier texte
      */
-    private Map<Integer,Mot> mots;
+    private Map<Integer, Mot> mots;
 
     /**
      * Nombre de fichier present dans le fichier texte

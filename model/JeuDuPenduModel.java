@@ -1,9 +1,14 @@
 package model;
 
+import model.entity.Mot;
+import model.exception.LettreInvalideException;
+import model.utils.LectureFichier;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JeuDuPenduModel {
 
@@ -94,11 +99,43 @@ public class JeuDuPenduModel {
         return random.nextInt(lectureFichier.getTaille());
     }
 
-    public void proposer(String lettre){
+    /**
+     * Le joueur propose une lettre
+     * @param lettre
+     */
+    public void proposer(String lettre) throws LettreInvalideException{
+        estValide(lettre);
+
         if(mot.getMot().contains(lettre)){
             trouvee.add(lettre);
+            if(trouvee.size() == mot.getMot().length()){
+                etat = Boolean.TRUE;
+            }
         }else{
             erreur.add(lettre);
+            if(erreur.size() == mot.getMot().length()){
+                etat = Boolean.FALSE;
+            }
+        }
+
+        if(etat != null && Boolean.TRUE.equals(etat)){
+            // TODO Gagner
+        }else if (etat != null){
+            // TODO Perdu
+        }
+    }
+
+    /**
+     * Verification de la lettre en entrée
+     * @param lettre
+     * @throws LettreInvalideException si la lettre est invalide
+     */
+    private void estValide(String lettre) throws LettreInvalideException{
+        Pattern pattern = Pattern.compile("[a-zA-ZÀ-ÖØ-öø-ÿ]");
+        Matcher matcher = pattern.matcher(lettre);
+
+        if (matcher.matches()) {
+            throw new LettreInvalideException("La lettre " + lettre + " est invalide");
         }
     }
 }
