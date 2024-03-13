@@ -8,20 +8,44 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Controler du jeu du pendu
+ */
 public class JeuDuPenduControler {
 
+    /**
+     * Model du jeu
+     */
     private JeuDuPenduModel jeuDuPenduModel;
 
+    /**
+     * Label qui contient le mot à découvrir
+     */
     private JLabel motADecouvrir;
 
+    /**
+     * Label de la defintion du mot
+     */
     private JLabel defintion;
 
+    /**
+     * Bouton pour afficher la definition
+     */
     private JButton afficherDefinition;
 
+    /**
+     * Zone de saisie
+     */
     private JTextField zoneSaisie;
 
+    /**
+     * Tableau des lettres déjà proposée
+     */
     private JLabel lettreDejaProposer;
 
+    /**
+     * Label des tentatives restante
+     */
     private JLabel tentativeRestante;
 
     public JeuDuPenduControler(JeuDuPenduModel jeuDuPenduModel) {
@@ -69,6 +93,10 @@ public class JeuDuPenduControler {
         });
     }
 
+    /**
+     * Compose le label du mot à découvrir
+     * @return la composition
+     */
     private String composerMotAdecouvrir(){
         String mot = "";
         for(int index = 0; index < jeuDuPenduModel.getMot().getMot().length(); index++){

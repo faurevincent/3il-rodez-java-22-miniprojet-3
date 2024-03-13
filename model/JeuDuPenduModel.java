@@ -102,7 +102,7 @@ public class JeuDuPenduModel {
     /**
      * Le joueur propose une lettre
      * @param lettre
-     * @return true si lettre presente
+     * @return true si la lettre est presente
      */
     public boolean proposer(String lettre) throws LettreInvalideException{
         lettre = lettre.toLowerCase();
