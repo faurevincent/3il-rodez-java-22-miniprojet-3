@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class JeuDuPenduModel {
 
-    private final int NBR_ERREUR_POSSIBLE = 11;
+    public static final int NBR_ERREUR_POSSIBLE = 11;
 
     /**
      * Mot de la partie
@@ -102,15 +102,19 @@ public class JeuDuPenduModel {
     /**
      * Le joueur propose une lettre
      * @param lettre
+     * @return true si lettre presente
      */
-    public void proposer(String lettre) throws LettreInvalideException{
+    public boolean proposer(String lettre) throws LettreInvalideException{
+        lettre = lettre.toLowerCase();
         estValide(lettre);
+        boolean estTrouvee = false;
 
         if(mot.getMot().contains(lettre)){
             trouvee.add(lettre);
             if(trouvee.size() == mot.getMot().length()){
                 etat = Boolean.TRUE;
             }
+            estTrouvee = true;
         }else{
             erreur.add(lettre);
             if(erreur.size() == mot.getMot().length()){
@@ -118,11 +122,7 @@ public class JeuDuPenduModel {
             }
         }
 
-        if(etat != null && Boolean.TRUE.equals(etat)){
-            // TODO Gagner
-        }else if (etat != null){
-            // TODO Perdu
-        }
+        return estTrouvee;
     }
 
     /**
@@ -131,10 +131,10 @@ public class JeuDuPenduModel {
      * @throws LettreInvalideException si la lettre est invalide
      */
     private void estValide(String lettre) throws LettreInvalideException{
-        Pattern pattern = Pattern.compile("[a-zA-ZÀ-ÖØ-öø-ÿ]");
+        Pattern pattern = Pattern.compile("[a-zé-]");
         Matcher matcher = pattern.matcher(lettre);
 
-        if (matcher.matches()) {
+        if (!matcher.matches()) {
             throw new LettreInvalideException("La lettre " + lettre + " est invalide");
         }
     }
