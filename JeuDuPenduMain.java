@@ -36,6 +36,7 @@ public class JeuDuPenduMain {
         rejouer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
                 main(new String[0]);
             }
         });

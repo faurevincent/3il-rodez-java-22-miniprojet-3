@@ -109,15 +109,15 @@ public class JeuDuPenduModel {
         estValide(lettre);
         boolean estTrouvee = false;
 
-        if(mot.getMot().contains(lettre)){
+        if(mot.getMot().contains(lettre) && !trouvee.contains(lettre)){
             trouvee.add(lettre);
             if(trouvee.size() == mot.getMot().length()){
                 etat = Boolean.TRUE;
             }
             estTrouvee = true;
-        }else{
+        }else if (!mot.getMot().contains(lettre)){
             erreur.add(lettre);
-            if(erreur.size() == mot.getMot().length()){
+            if(erreur.size() == NBR_ERREUR_POSSIBLE){
                 etat = Boolean.FALSE;
             }
         }

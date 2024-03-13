@@ -79,13 +79,14 @@ public class JeuDuPenduControler {
 
                 if(estTrouvee){
                     motADecouvrir.setText(composerMotAdecouvrir());
-                    if(jeuDuPenduModel.getEtat() != null && jeuDuPenduModel.getEtat()){
-                        JOptionPane.showMessageDialog(null, "Vous avez gagner !");
-                    }
                 }else{
                     lettreDejaProposer.setText("Lettre déjà proposées : " + jeuDuPenduModel.getErreur().toString());
                     tentativeRestante.setText("Tentative restantes : " + (JeuDuPenduModel.NBR_ERREUR_POSSIBLE - jeuDuPenduModel.getErreur().size()));
-                    if(jeuDuPenduModel.getEtat() != null && !jeuDuPenduModel.getEtat()){
+                }
+                if(jeuDuPenduModel.getEtat() != null){
+                    if(jeuDuPenduModel.getEtat().equals(Boolean.TRUE)){
+                        JOptionPane.showMessageDialog(null, "Vous avez gagner !");
+                    }else{
                         JOptionPane.showMessageDialog(null, "Vous avez perdu !");
                     }
                 }
